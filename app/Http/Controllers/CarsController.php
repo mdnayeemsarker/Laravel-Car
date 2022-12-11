@@ -116,6 +116,9 @@ class CarsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // $car = Car::find($id);
+        // $car -> delete();
+        Car::where('id', $id)->delete();
+        return redirect('/cars');
     }
 }

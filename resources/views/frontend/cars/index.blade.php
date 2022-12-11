@@ -42,9 +42,14 @@
                                     <p class="price ml-auto">${{ $car->price }} <span>/day</span></p>
                                 </div>
                                 <p class="d-flex mb-0 d-block">
-                                    <a href="#" class="btn btn-primary py-2 mr-1">Book now</a>
-                                    <a href="/cars/{{ $car->id }}" class="btn btn-secondary py-2 ml-1">Details</a>
-                                    <a href="/cars/{{ $car->id }}/edit" class="btn btn-warning py-2 ml-1">Edit</a>
+                                    <a href="#" class="btn btn-primary mr-1">Book now</a>
+                                    <a href="/cars/{{ $car->id }}" class="btn btn-secondary mr-1">Details</a>
+                                    <a href="/cars/{{ $car->id }}/edit" class="btn btn-warning mr-1">Edit</a>
+                                <form action="/cars/{{ $car->id }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <input  class="btn btn-danger mt-2" type="submit" value="Delete">
+                                </form>
                                 </p>
                             </div>
                         </div>
