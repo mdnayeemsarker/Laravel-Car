@@ -21,5 +21,7 @@ Route::get('/services', [PagesController::class, 'services']);
 Route::get('/pricing', [PagesController::class, 'pricing']);
 Route::get('/blog', [PagesController::class, 'blog']);
 Route::get('/contact', [PagesController::class, 'contact']);
+Route::get('/add-footer', [PagesController::class, 'add_footer']);
+Route::post('/storefooter', [PagesController::class, 'storefooter']);
 
 Route::resource('cars', CarsController::class);

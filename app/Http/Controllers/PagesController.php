@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Footer;
 
 class PagesController extends Controller
 {
     public function index(){
-        return view('frontend.index');
+
+        $footer = Footer::all();
+
+        return view('frontend.index',[
+            'footer' => $footer
+        ]);
     }
     
     public function about(){
@@ -28,5 +34,21 @@ class PagesController extends Controller
     
     public function contact(){
         return view('frontend.contact');
+    }
+    public function add_footer(){
+        return view('admin.create_footer');
+    }
+    public function storefooter(Request $request){
+        
+        $footer = Footer::create([
+            'address' => $request->input('address'),
+            'city' => $request->input('city'),
+            'post_code' => $request->input('post_code'),
+            'country' => $request->input('country'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+        ]);
+        
+        return redirect('/');
     }
 }
