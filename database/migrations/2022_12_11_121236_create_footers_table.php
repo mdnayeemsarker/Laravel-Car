@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('footers', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('address');
             $table->string('city');
             $table->string('country');

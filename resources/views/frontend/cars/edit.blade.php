@@ -26,8 +26,9 @@
 @section('content')
     <section class="ftco-section bg-light">
         <div class="container">
-            <form action="/cars" method="POST">
+            <form action="/cars/{{ $car->id }}" method="POST">
                 @csrf
+                @method('PUT')
                 <label class="col-6">
                     <h2 class="justify-center">Update Car</h2>
                 </label>

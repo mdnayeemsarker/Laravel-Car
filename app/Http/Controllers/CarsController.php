@@ -94,7 +94,18 @@ class CarsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $car = [
+            'name' => $request->input('name'),
+            'founded' => $request->input('founded'),
+            'price' => $request->input('price'),
+            'description' => $request->input('description'),
+            'image' => 'image url',
+        ];
+
+        Car::where('id', $id)->update($car);
+
+        return redirect('/cars');
+
     }
 
     /**
