@@ -79,7 +79,10 @@ class CarsController extends Controller
      */
     public function edit($id)
     {
-        
+        $car = Car::find($id);
+        return view('frontend.cars.edit', [
+            'car' => $car
+        ]);
     }
 
     /**

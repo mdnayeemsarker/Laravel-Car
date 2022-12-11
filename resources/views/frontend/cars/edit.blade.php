@@ -16,7 +16,7 @@
                             </a>
                         </span>
                         <span>Cars <i class="ion-ios-arrow-forward"></i></span>
-                        <span>Create <i class="ion-ios-arrow-forward"></i></span>
+                        <span>Update <i class="ion-ios-arrow-forward"></i></span>
                     </p>
                 </div>
             </div>
@@ -29,7 +29,7 @@
             <form action="/cars" method="POST">
                 @csrf
                 <label class="col-6">
-                    <h2 class="justify-center">Create a new Car</h2>
+                    <h2 class="justify-center">Update Car</h2>
                 </label>
                 <div class="form-group row">
                     <label class="col-2"></label>
@@ -40,10 +40,9 @@
                                     <i class="fa fa-address-book"></i>
                                 </div>
                             </div>
-                            <input id="name" name="name" placeholder="Brand Name..." type="text"
-                                aria-describedby="nameHelpBlock" required="required" class="form-control">
+                            <input id="name" name="name" value="{{ $car->name }}" type="text"
+                                required="required" class="form-control">
                         </div>
-                        <span id="nameHelpBlock" class="form-text text-muted">Maruti</span>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -55,10 +54,9 @@
                                     <i class="fa fa-calendar-minus-o"></i>
                                 </div>
                             </div>
-                            <input id="founded" name="founded" placeholder="Founded" type="number"
-                                aria-describedby="foundedHelpBlock" required="required" class="form-control">
+                            <input id="founded" name="founded" value="{{ $car->founded }}" type="number"
+                                required="required" class="form-control">
                         </div>
-                        <span id="foundedHelpBlock" class="form-text text-muted">like: 2016</span>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -70,18 +68,14 @@
                                     <i class="fa fa-usd"></i>
                                 </div>
                             </div>
-                            <input id="price" name="price" placeholder="Price" type="number"
-                                aria-describedby="priceHelpBlock" required="required" class="form-control">
+                            <input id="price" name="price" type="number" value="{{ $car->price }}" required="required" class="form-control">
                         </div>
-                        <span id="priceHelpBlock" class="form-text text-muted">like: $2685</span>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-2"></label>
                     <div class="col-10">
-                        <textarea id="description" name="description" cols="40" rows="5" required="required" class="form-control"
-                            aria-describedby="descriptionHelpBlock">This is an marutis description</textarea>
-                        <span id="descriptionHelpBlock" class="form-text text-muted">This is an marutis description</span>
+                        <textarea id="description" name="description" cols="40" rows="5" required="required" class="form-control">{{ $car->description }}</textarea>
                     </div>
                 </div>
                 <div class="form-group row">
