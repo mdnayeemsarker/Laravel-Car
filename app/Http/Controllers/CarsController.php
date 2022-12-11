@@ -79,7 +79,7 @@ class CarsController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**

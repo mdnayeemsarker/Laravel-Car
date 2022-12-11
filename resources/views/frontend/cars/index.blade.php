@@ -45,6 +45,10 @@
                                         now</a>
                                     <a href="/cars/{{ $car->id }}" class="btn btn-secondary py-2 ml-1">Details</a>
                                 </p>
+                                <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book
+                                        now</a>
+                                    <a href="/cars/{{ $car->id }}/edit" class="btn btn-secondary py-2 ml-1">Details</a>
+                                </p>
                             </div>
                         </div>
                     </div>
