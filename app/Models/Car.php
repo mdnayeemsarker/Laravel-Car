@@ -24,4 +24,19 @@ class Car extends Model
         return $this->hasMany(CarModel::class);
     }
 
+    /**
+     * Get all of the carFeatures for the Car
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function carFeatures()
+    {
+        return $this->hasManyThrough(
+            CarFeature::class, 
+            CarModel::class,
+            'car_id',
+            'model_id',
+        );
+    }
+
 }

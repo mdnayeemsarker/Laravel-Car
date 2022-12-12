@@ -11,11 +11,14 @@ class CarModel extends Model
     protected $table = 'car_models';
     protected $primaryKey = 'id';
 
+    protected $fillable = ['car_id', 'model_name'];
+
     /**
      * Get the user that owns the CarModel
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+
     public function car()
     {
         return $this->belongsTo(Car::class);

@@ -41,6 +41,16 @@
                                     <span class="cat">Founded: {{ $car->founded }}</span>
                                     <p class="price ml-auto">${{ $car->price }} <span>/day</span></p>
                                 </div>
+                                <div class="d-flex mb-3">
+                                    <span class="text-warning">Models:</span>
+                                    @forelse ($car->carModels as $model)
+                                        <span class="text-danger">
+                                            {{ $model['model_name'] }},
+                                        </span>
+                                    @empty
+                                        <span class="text-danger">Nothing to found</span>
+                                    @endforelse
+                                </div>
                                 <p class="d-flex mb-0 d-block">
                                     <a href="#" class="btn btn-primary mr-1">Book now</a>
                                     <a href="/cars/{{ $car->id }}" class="btn btn-secondary mr-1">Details</a>

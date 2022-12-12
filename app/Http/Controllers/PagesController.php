@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Footer;
+use App\Models\Car;
 
 class PagesController extends Controller
 {
     public function index(){
 
         $footer = Footer::all();
-
-        return view('frontend.index',[
-            'footer' => $footer
+        $cars = Car::all();
+        // dd($cars);
+        return view('frontend.index', [
+            'cars' => $cars
         ]);
     }
     

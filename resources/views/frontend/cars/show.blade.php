@@ -29,18 +29,17 @@
                             <span class="subheading">Founded: {{ $car->founded }}</span>
                             <h2>{{ $car->name }}</h2>
                             <p class="price ml-auto text-primary">${{ $car->price }} <span>/day</span></p>
-                            <p class="text text-warning">
-                                Models:
-                            </p>
-                            @forelse ($car->carModels as $model)
-                                <span class="text text-danger hover-gray">
-                                    {{ $model['model_name'] }},
-                                </span>
-                            @empty 
-                            <p class="text text-danger">
-                                Nothing to found
-                            </p>
-                            @endforelse
+
+                            <div class="d-flex mb-3">
+                                <span class="text-warning">Models:</span>
+                                @forelse ($car->carModels as $model)
+                                    <span class="text-danger">
+                                        {{ $model['model_name'] }},
+                                    </span>
+                                @empty
+                                    <span class="text-danger">Nothing to found</span>
+                                @endforelse
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -154,34 +153,117 @@
                             <div class="tab-pane fade show active" id="pills-description" role="tabpanel"
                                 aria-labelledby="pills-description-tab">
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <ul class="features">
-                                            <li class="check"><span class="ion-ios-checkmark"></span>Airconditions</li>
-                                            <li class="check"><span class="ion-ios-checkmark"></span>Child Seat</li>
-                                            <li class="check"><span class="ion-ios-checkmark"></span>GPS</li>
-                                            <li class="check"><span class="ion-ios-checkmark"></span>Luggage</li>
-                                            <li class="check"><span class="ion-ios-checkmark"></span>Music</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <ul class="features">
-                                            <li class="check"><span class="ion-ios-checkmark"></span>Seat Belt</li>
-                                            <li class="remove"><span class="ion-ios-close"></span>Sleeping Bed</li>
-                                            <li class="check"><span class="ion-ios-checkmark"></span>Water</li>
-                                            <li class="check"><span class="ion-ios-checkmark"></span>Bluetooth</li>
-                                            <li class="remove"><span class="ion-ios-close"></span>Onboard computer</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <ul class="features">
-                                            <li class="check"><span class="ion-ios-checkmark"></span>Audio input</li>
-                                            <li class="check"><span class="ion-ios-checkmark"></span>Long Term Trips</li>
-                                            <li class="check"><span class="ion-ios-checkmark"></span>Car Kit</li>
-                                            <li class="check"><span class="ion-ios-checkmark"></span>Remote central
-                                                locking</li>
-                                            <li class="check"><span class="ion-ios-checkmark"></span>Climate control</li>
-                                        </ul>
-                                    </div>
+                                    @foreach ($car->carModels as $model)
+                                        @foreach ($car->carFeatures as $feature)
+                                            @if ($model->id == $feature->model_id)
+                                                <div class="col-md-4">
+                                                    <ul class="features">
+                                                        @if ($feature['aircondition'] == 'on')
+                                                            <li class="check"><span
+                                                                    class="ion-ios-checkmark"></span>Airconditions</li>
+                                                        @else
+                                                            <li class="remove"><span
+                                                                    class="ion-ios-close"></span>Airconditions</li>
+                                                        @endif
+                                                        @if ($feature['child_seat'] == 'on')
+                                                            <li class="check"><span
+                                                                    class="ion-ios-checkmark"></span>Child Seat</li>
+                                                        @else
+                                                            <li class="remove"><span class="ion-ios-close"></span>Child
+                                                                Seat</li>
+                                                        @endif
+                                                        @if ($feature['gps'] == 'on')
+                                                            <li class="check"><span class="ion-ios-checkmark"></span>GPS
+                                                            </li>
+                                                        @else
+                                                            <li class="remove"><span class="ion-ios-close"></span>GPS</li>
+                                                        @endif
+                                                        @if ($feature['luggage'] == 'on')
+                                                            <li class="check"><span class="ion-ios-checkmark"></span>Luggage
+                                                            </li>
+                                                        @else
+                                                            <li class="remove"><span class="ion-ios-close"></span>Luggage</li>
+                                                        @endif
+                                                        @if ($feature['music'] == 'on')
+                                                            <li class="check"><span
+                                                                    class="ion-ios-checkmark"></span>Music</li>
+                                                        @else
+                                                            <li class="remove"><span
+                                                                    class="ion-ios-close"></span>Music</li>
+                                                        @endif
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <ul class="features">
+                                                        @if ($feature['seat_belt'] == 'on')
+                                                            <li class="check"><span
+                                                                    class="ion-ios-checkmark"></span>Seat Belt</li>
+                                                        @else
+                                                            <li class="remove"><span class="ion-ios-close"></span>Seat Belt</li>
+                                                        @endif
+                                                        @if ($feature['sleeping_bag'] == 'on')
+                                                            <li class="check"><span class="ion-ios-checkmark"></span>Sleeping Bag
+                                                            </li>
+                                                        @else
+                                                            <li class="remove"><span class="ion-ios-close"></span>Sleeping Bag</li>
+                                                        @endif
+                                                        @if ($feature['watter'] == 'on')
+                                                            <li class="check"><span class="ion-ios-checkmark"></span>Watter
+                                                            </li>
+                                                        @else
+                                                            <li class="remove"><span class="ion-ios-close"></span>Watter</li>
+                                                        @endif
+                                                        @if ($feature['bluetooth'] == 'on')
+                                                            <li class="check"><span class="ion-ios-checkmark"></span>Bluetooth
+                                                            </li>
+                                                        @else
+                                                            <li class="remove"><span class="ion-ios-close"></span>Bluetooth</li>
+                                                        @endif
+                                                        @if ($feature['on_board_computer'] == 'on')
+                                                            <li class="check"><span class="ion-ios-checkmark"></span>On Board Computer
+                                                            </li>
+                                                        @else
+                                                            <li class="remove"><span class="ion-ios-close"></span>On Board Computer</li>
+                                                        @endif
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <ul class="features">
+                                                        @if ($feature['audio_input'] == 'on')
+                                                            <li class="check"><span
+                                                                    class="ion-ios-checkmark"></span>Audio Input</li>
+                                                        @else
+                                                            <li class="remove"><span class="ion-ios-close"></span>Audio Input</li>
+                                                        @endif
+                                                        @if ($feature['car_kit'] == 'on')
+                                                            <li class="check"><span class="ion-ios-checkmark"></span>Car Kit
+                                                            </li>
+                                                        @else
+                                                            <li class="remove"><span class="ion-ios-close"></span>Car Kit</li>
+                                                        @endif
+                                                        @if ($feature['remote_control_locking'] == 'on')
+                                                            <li class="check"><span class="ion-ios-checkmark"></span>Remote Control Locking
+                                                            </li>
+                                                        @else
+                                                            <li class="remove"><span class="ion-ios-close"></span>Remote Control Locking</li>
+                                                        @endif
+                                                        @if ($feature['climate_control'] == 'on')
+                                                            <li class="check"><span class="ion-ios-checkmark"></span>Climate Control
+                                                            </li>
+                                                        @else
+                                                            <li class="remove"><span class="ion-ios-close"></span>Climate Control</li>
+                                                        @endif
+                                                        @if ($feature['long_term_trips'] == 'on')
+                                                            <li class="check"><span class="ion-ios-checkmark"></span>Long Term Trips
+                                                            </li>
+                                                        @else
+                                                            <li class="remove"><span class="ion-ios-close"></span>Long Term Trips</li>
+                                                        @endif
+                                                    </ul>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endforeach
                                 </div>
                             </div>
 
@@ -335,44 +417,51 @@
             </div>
         </div>
     </section>
-
-    @if ($r_cars == null)
-        <section class="ftco-section ftco-no-pt">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-                        <span class="subheading">Choose Car</span>
-                        <h2 class="mb-2">Related Cars</h2>
-                    </div>
-                </div>
-
-                <div class="row">
-                    @foreach ($r_cars as $r_car)
-                        @if ($car->id != $r_car->id)
-                            <div class="col-md-4">
-                                <div class="car-wrap rounded ftco-animate">
-                                    <div class="img rounded d-flex align-items-end"
-                                        style="background-image: url({{ asset('images/car-1.jpg') }});">
-                                    </div>
-                                    <div class="text">
-                                        <h2 class="mb-0"><a href="/cars/{{ $r_car->id }}">{{ $r_car->name }}</a>
-                                        </h2>
-                                        <div class="d-flex mb-3">
-                                            <span class="cat">Founded: {{ $r_car->founded }}</span>
-                                            <p class="price ml-auto">${{ $r_car->price }} <span>/day</span></p>
-                                        </div>
-                                        <p class="d-flex mb-0 d-block"><a href="#"
-                                                class="btn btn-primary py-2 mr-1">Book
-                                                now</a> <a href="/cars/{{ $r_car->id }}"
-                                                class="btn btn-secondary py-2 ml-1">Details</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
+    <section class="ftco-section ftco-no-pt">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 heading-section text-center ftco-animate mb-2">
+                    <span class="subheading">Choose Car</span>
+                    <h2 class="mb-2">Related Cars</h2>
                 </div>
             </div>
-        </section>
-    @endif
+
+            <div class="row">
+                @foreach ($r_cars as $r_car)
+                    @if ($car->id != $r_car->id)
+                        <div class="col-md-4">
+                            <div class="car-wrap rounded ftco-animate">
+                                <div class="img rounded d-flex align-items-end"
+                                    style="background-image: url({{ asset('images/car-1.jpg') }});">
+                                </div>
+                                <div class="text">
+                                    <h2 class="mb-0"><a href="/cars/{{ $r_car->id }}">{{ $r_car->name }}</a>
+                                    </h2>
+                                    <div class="d-flex mb-3">
+                                        <span class="cat">Founded: {{ $r_car->founded }}</span>
+                                        <p class="price ml-auto">${{ $r_car->price }} <span>/day</span></p>
+                                    </div>
+                                    <div class="d-flex mb-3">
+                                        <span class="text-warning">Models:</span>
+                                        @forelse ($car->carModels as $model)
+                                            <span class="text-danger">
+                                                {{ $model['model_name'] }},
+                                            </span>
+                                        @empty
+                                            <span class="text-danger">Nothing to found</span>
+                                        @endforelse
+                                    </div>
+                                    <p class="d-flex mb-0 d-block"><a href="#"
+                                            class="btn btn-primary py-2 mr-1">Book
+                                            now</a> <a href="/cars/{{ $r_car->id }}"
+                                            class="btn btn-secondary py-2 ml-1">Details</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+    </section>
 @endsection
