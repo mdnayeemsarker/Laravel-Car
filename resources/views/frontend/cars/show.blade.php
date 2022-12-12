@@ -29,6 +29,18 @@
                             <span class="subheading">Founded: {{ $car->founded }}</span>
                             <h2>{{ $car->name }}</h2>
                             <p class="price ml-auto text-primary">${{ $car->price }} <span>/day</span></p>
+                            <p class="text text-warning">
+                                Models:
+                            </p>
+                            @forelse ($car->carModels as $model)
+                                <span class="text text-danger hover-gray">
+                                    {{ $model['model_name'] }},
+                                </span>
+                            @empty 
+                            <p class="text text-danger">
+                                Nothing to found
+                            </p>
+                            @endforelse
                         </div>
                     </div>
                 </div>

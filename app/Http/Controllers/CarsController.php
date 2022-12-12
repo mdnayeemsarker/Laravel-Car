@@ -64,7 +64,7 @@ class CarsController extends Controller
         $r_car = Car::where(
             'name', $car->name
             )->get();
-        // dd($r_car);
+        // dd($car);
         return view('frontend.cars.show', [
             'car' => $car,
             'r_cars' => $r_car,

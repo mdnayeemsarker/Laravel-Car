@@ -14,4 +14,14 @@ class Car extends Model
 
     protected $fillable = ['name', 'founded', 'price', 'description', 'image'];
 
+    /**
+     * Get all of the comments for the Car
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function carModels()
+    {
+        return $this->hasMany(CarModel::class);
+    }
+
 }
