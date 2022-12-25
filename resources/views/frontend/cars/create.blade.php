@@ -26,7 +26,7 @@
 @section('content')
     <section class="ftco-section bg-light">
         <div class="container">
-            <form action="/cars" method="POST">
+            <form action="/cars" method="POST" enctype="multipart/form-data">
                 @csrf
                 <label class="col-6">
                     <h2 class="justify-center">Create a new Car</h2>
@@ -85,10 +85,20 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-12">
+                    <div class="col-6">
                         <textarea id="description" name="description" cols="40" rows="5" required="required" class="form-control"
                             aria-describedby="descriptionHelpBlock">This is an marutis description</textarea>
                         <span id="descriptionHelpBlock" class="form-text text-muted">This is an marutis description</span>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-calendar-minus-o"></i>
+                                </div>
+                            </div>
+                            <input name="image" type="file" required="required" class="form-control">
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">

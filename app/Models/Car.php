@@ -12,7 +12,7 @@ class Car extends Model
     protected $table = 'cars';
     protected $primaryKey = 'id';
 
-    protected $fillable = ['name', 'founded', 'price', 'description', 'image'];
+    protected $fillable = ['name', 'founded', 'price', 'description', 'image_path'];
 
     /**
      * Get all of the comments for the Car

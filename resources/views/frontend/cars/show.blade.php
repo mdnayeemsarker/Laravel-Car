@@ -24,7 +24,9 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="car-details">
-                        <div class="img rounded" style="background-image: url({{ asset('images/bg_1.jpg') }});"></div>
+                        <div class="img rounded">
+                            <img class="img rounded" src="{{ asset('images/' . $car->image_path) }}">
+                        </div>
                         <div class="text text-center">
                             <span class="subheading">Founded: {{ $car->founded }}</span>
                             <h2>{{ $car->name }}</h2>
@@ -421,7 +423,6 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12 heading-section text-center ftco-animate mb-2">
-                    <span class="subheading">Choose Car</span>
                     <h2 class="mb-2">Related Cars</h2>
                 </div>
             </div>
@@ -431,8 +432,8 @@
                     @if ($car->id != $r_car->id)
                         <div class="col-md-4">
                             <div class="car-wrap rounded ftco-animate">
-                                <div class="img rounded d-flex align-items-end"
-                                    style="background-image: url({{ asset('images/car-1.jpg') }});">
+                                <div class="img rounded d-flex align-items-end">
+                                    <img class="img rounded" src="{{ asset('images/' . $car->image_path) }}">
                                 </div>
                                 <div class="text">
                                     <h2 class="mb-0"><a href="/cars/{{ $r_car->id }}">{{ $r_car->name }}</a>

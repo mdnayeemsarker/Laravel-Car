@@ -41,12 +41,25 @@ class CarsController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'name' => 'required',
+            'founded' => 'required|integer|min:0|max:2023',
+            'price' => 'required|integer|min:1',
+            'description' => 'required',
+            'image' => 'required',
+        ]);
+
+        $imageName = time() . '-' . $request->name . '.' . $request->image->extension();
+
+        $request->image->move(public_path('images'), $imageName);
+
         $car = [
             'name' => $request->input('name'),
             'founded' => $request->input('founded'),
             'price' => $request->input('price'),
             'description' => $request->input('description'),
-            'image' => 'image url',
+            'image_path' => $imageName,
         ];
 
         $carId = Car::create($car)->id;
